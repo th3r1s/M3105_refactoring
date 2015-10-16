@@ -7,6 +7,8 @@ package tetris.model;
  */
 public class Tetriminos {
 	
+	private final Location initLocation;
+	
 	private final Types type;
 		
 	/**
@@ -17,6 +19,7 @@ public class Tetriminos {
 	public Tetriminos(Types type) 
 	{
 		this.type=type;
+		this.initLocation = new Location(0,5);
 
 	}
 	
@@ -26,6 +29,10 @@ public class Tetriminos {
 	 */
 	public Types getType() {
 		return type;
+	}
+	
+	public Location getInitLocation() {
+		return initLocation;
 	}
 	
 	@Override

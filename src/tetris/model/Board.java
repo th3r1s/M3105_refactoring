@@ -69,11 +69,12 @@ public class Board {
 	 * Method allowing to set a tetrimino on the board by making the relatives Box around the first box having a tetrimino on it, depending on the tetrimino wanted.
 	 * @param tetrimino
 	 */
-	public boolean createTetrimino(Tetriminos tetrimino, Location location)
+	public boolean createTetrimino(Tetriminos tetrimino)
 	{
 		List<Box> list = new ArrayList<Box>();
 		
 		Location[] tab = new Location[4];
+		Location location = tetrimino.getInitLocation();
 		
 		switch (tetrimino.getType()){
 		case I:

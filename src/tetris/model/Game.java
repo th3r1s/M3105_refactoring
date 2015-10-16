@@ -65,7 +65,7 @@ public class Game {
 
 	public void play(){
 		controller.refreshDisplay();
-		if(!board.createTetrimino(new Tetriminos(nextType), new Location(0, 5))){
+		if(!board.createTetrimino(new Tetriminos(nextType))){
 			listenerAllowed = false;
 			stopTimer();
 			controller.notifyWin();
