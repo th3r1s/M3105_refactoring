@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JSplitPane;
 
 import tetris.controller.ConfigManager;
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.BoxesColors;
 import tetris.view.Display;
 import tetris.view.buttons.ButtonDefault;
@@ -33,7 +33,7 @@ public class ColorsMenu extends TetrisPanel{
 		
 		for(int i = 0; i<boards.length; i++){
 			boards[i] = new Board(display, 5, 5, true);
-			boards[i].setTetrimino(Types.values()[i], 3, 2);
+			boards[i].setTetrimino(Tetrimino.values()[i], 3, 2);
 			gbc.gridx = (i >= 4 ? 1 : 0);
 			gbc.gridy = (i)%4;
 			add(boards[i], gbc);

@@ -27,13 +27,15 @@ public class Game {
 	
 	private int tetris;
 
-	private Types nextType;
+	private Tetrimino nextType;
 	
 	private boolean listenerAllowed;
 	
 	private Random random;
 	
-	private Types currentType;
+	private Tetrimino currentTetrimino;
+	
+	private Location initLocation;
 	
 
 	public Board getBoard() 
@@ -59,20 +61,21 @@ public class Game {
 		tetris = 0;
 		listenerAllowed = true;
 		random = new Random();
-		nextType = Types.values()[random.nextInt(Types.values().length)];
+		nextType = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
+		initLocation = new Location(0,5);
 		
 	}
 
 	public void play(){
 		controller.refreshDisplay();
-		if(!board.createTetrimino(new Tetriminos(nextType))){
+		if(!createTetrimino(nextType, initLocation)){
 			listenerAllowed = false;
 			stopTimer();
 			controller.notifyWin();
 			return;
 		}
-		currentType = nextType;
-		nextType = Types.values()[random.nextInt(Types.values().length)];
+		currentTetrimino = nextType;
+		nextType = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
 		startTimer();
 		listenerAllowed = true;
 	}
@@ -153,7 +156,7 @@ public class Game {
 				}
 
 				for(Box b : nextBoxes){
-					board.setTetrimino(new Tetriminos(currentType),b.getBoxLocation());
+					board.setTetrimino(currentTetrimino,b.getBoxLocation());
 				}
 
 
@@ -182,7 +185,7 @@ public class Game {
 	public boolean rotateTetrimino(){
 		
 		if(this.timerState){
-			if(currentType != Types.O){
+			if(currentTetrimino != Tetrimino.O){
 				List<Box> list = board.getPlayedBoxes();
 				ArrayList<Box> tempList = new ArrayList<Box>();
 
@@ -205,7 +208,7 @@ public class Game {
 					list.get(i).removeTetrimino(States.EMPTY);
 				}
 				for(int i=0;i<4;i++){
-					tempList.get(i).setTetrimino(new Tetriminos(currentType));
+					tempList.get(i).setTetrimino(currentTetrimino);
 				}
 				board.move(tempList);
 
@@ -256,6 +259,80 @@ public class Game {
 		controller.refreshDisplay();
 	}
 	
+	/**
+	 * Method allowing to set a tetrimino on the board by making the relatives Box around the first box having a tetrimino on it, depending on the tetrimino wanted.
+	 * @param tetrimino
+	 */
+	private boolean createTetrimino(Tetrimino tetrimmino, Location location){
+			
+			List<Box> list = new ArrayList<Box>();
+			
+			Location[] tab = new Location[4];
+			
+			switch (tetrimmino){
+			case I:
+				tab[1]= location;
+				tab[0]= new Location(location.getRow()+1,location.getColumn());
+				tab[2]= new Location(location.getRow()+2,location.getColumn());
+				tab[3]= new Location(location.getRow()+3,location.getColumn());
+				break;
+			case O:
+				tab[0]= location;
+				tab[1]= new Location(location.getRow()+1,location.getColumn());
+				tab[2]= new Location(location.getRow()+1,location.getColumn()-1);
+				tab[3]= new Location(location.getRow(),location.getColumn()-1);
+				break;
+			case L:
+				tab[2]= location;
+				tab[0]= new Location(location.getRow()+1,location.getColumn());
+				tab[1]= new Location(location.getRow()+2,location.getColumn());
+				tab[3]= new Location(location.getRow()+2,location.getColumn()+1);
+				break;
+			case Z:
+				tab[0]= location;
+				tab[3]= new Location(location.getRow(),location.getColumn()-1);
+				tab[1]= new Location(location.getRow()+1,location.getColumn());
+				tab[2]= new Location(location.getRow()+1,location.getColumn()+1);
+				break;
+			case S:
+				tab[0]= location;
+				tab[3]= new Location(location.getRow(),location.getColumn()+1);
+				tab[1]= new Location(location.getRow()+1,location.getColumn());
+				tab[2]= new Location(location.getRow()+1,location.getColumn()-1);
+				break;
+			case T:
+				tab[0]= location;
+				tab[1]= new Location(location.getRow()+1,location.getColumn());
+				tab[2]= new Location(location.getRow(),location.getColumn()-1);
+				tab[3]= new Location(location.getRow(),location.getColumn()+1);
+				break;
+			case J:
+				tab[2]= location;
+				tab[3]= new Location(location.getRow()+2,location.getColumn()-1);
+				tab[0]= new Location(location.getRow()+1,location.getColumn());
+				tab[1]= new Location(location.getRow()+2,location.getColumn());
+				break;
+			default :	break;
+			}
+			
+			for(int i=0;i<4;i++){
+				list.add(board.getBox(tab[i].getRow(),tab[i].getColumn()));
+			}
+			
+			for(Box b : list){
+				if(b.getState() != States.EMPTY)
+					return false;
+			}
+			
+			for(Box b : list){
+				b.setTetrimino(tetrimmino);
+			}
+			
+			board.setCurrentLocationPlayed(tab);
+			
+			return true;		
+	}
+	
 	public int getScore() {
 		return score;
 	}
@@ -264,7 +341,7 @@ public class Game {
 		return tetris;
 	}
 	
-	public Types getNextType() {
+	public Tetrimino getNextType() {
 		return nextType;
 	}
 	

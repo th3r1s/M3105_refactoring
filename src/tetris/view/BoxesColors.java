@@ -2,7 +2,7 @@ package tetris.view;
 
 import java.awt.Color;
 
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 
 /**
  * Enumeration that contains the colors the tetriminos will get on the Swing interface.
@@ -34,7 +34,7 @@ public enum BoxesColors {
 		return color;
 	}
 	
-	public static BoxesColors getEquivalent(Types type){
+	public static BoxesColors getEquivalent(Tetrimino type){
 		
 		switch(type){
 		case I : return I;

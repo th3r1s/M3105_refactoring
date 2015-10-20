@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.SwingUtilities;
 
 import tetris.model.Game;
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.Display;
 
 /**
@@ -146,9 +146,9 @@ public class SwingController implements Controller{
 	 * @param col
 	 * @return Types
 	 */
-	public Types getTypeFromBox(int row, int col){
+	public Tetrimino getTypeFromBox(int row, int col){
 		try{
-			return game.getBoard().getBox(row, col).getTetrimino().getType();
+			return game.getBoard().getBox(row, col).getTetrimino();
 		}catch(NullPointerException e){return null;}
 	}
 	

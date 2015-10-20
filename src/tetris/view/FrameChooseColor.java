@@ -12,7 +12,7 @@ import javax.swing.colorchooser.ColorSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.buttons.ButtonApplyColor;
 import tetris.view.buttons.ButtonCancel;
 import tetris.view.containers.Board;
@@ -28,7 +28,7 @@ public class FrameChooseColor extends JFrame implements WindowListener{
 	
 	private Display display;
 
-	public FrameChooseColor(final Display display, final Board copiedBoard, Board currentBoard, Types type) {
+	public FrameChooseColor(final Display display, final Board copiedBoard, Board currentBoard, Tetrimino type) {
 		this.display = display;
 		copiedBoard.setTetrimino(type, 3, 2);
 		final JColorChooser chooser = new JColorChooser();

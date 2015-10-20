@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.BoxesColors;
 import tetris.view.Display;
 import tetris.view.FrameChooseColor;
@@ -29,7 +29,7 @@ public class Board extends JPanel implements MouseListener{
 	private Display display;
 	
 	private Box[] currentTetriomino;
-	private Types currentTypePlayed;
+	private Tetrimino currentTypePlayed;
 	private boolean editingColor;
 	
 	public Board(Display display, int rows, int columns, boolean editingColor) {
@@ -79,7 +79,7 @@ public class Board extends JPanel implements MouseListener{
 		}
 	}
 		
-	public void setTetrimino(Types type, int row, int col) 
+	public void setTetrimino(Tetrimino type, int row, int col) 
 	{	
 		
 		this.currentTypePlayed = type;
@@ -183,7 +183,7 @@ public class Board extends JPanel implements MouseListener{
 		removeMouseListener(this);
 	}
 	
-	public Types getCurrentTypePlayed() {
+	public Tetrimino getCurrentTypePlayed() {
 		return currentTypePlayed;
 	}
 

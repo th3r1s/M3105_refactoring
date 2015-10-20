@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import tetris.controller.ConfigManager;
 import tetris.controller.SwingController;
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.containers.Game;
 import tetris.view.containers.HighScores;
 import tetris.view.containers.HomeMenu;
@@ -54,7 +54,7 @@ public class Display implements Runnable{
 		}
 	}
 	
-	public void setNextTetrimino(Types type){
+	public void setNextTetrimino(Tetrimino type){
 		game.getNextTetrimino().resetPanel();;
 		game.getNextTetrimino().setTetrimino(type, 3, 2);
 	}

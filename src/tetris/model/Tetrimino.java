@@ -5,7 +5,7 @@ package tetris.model;
  * @author Numa
  *
  */
-public enum Types {
+public enum Tetrimino {
 
 	I,
 	S,

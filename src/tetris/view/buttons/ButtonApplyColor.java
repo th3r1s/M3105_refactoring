@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import tetris.controller.ConfigManager;
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.Display;
 import tetris.view.containers.Board;
 
@@ -20,11 +20,11 @@ public class ButtonApplyColor extends TetrisButton implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	private Types type;
+	private Tetrimino type;
 	private JFrame frameToClose;
 	private Board board;
 
-	public ButtonApplyColor(Display display, Types type, Color color, JFrame frameToClose, Board board) {
+	public ButtonApplyColor(Display display, Tetrimino type, Color color, JFrame frameToClose, Board board) {
 		super(display, "apply");
 		this.type = type;
 		this.color = color;

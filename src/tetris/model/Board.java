@@ -65,84 +65,9 @@ public class Board {
 	}
 	
 	
-	/**
-	 * Method allowing to set a tetrimino on the board by making the relatives Box around the first box having a tetrimino on it, depending on the tetrimino wanted.
-	 * @param tetrimino
-	 */
-	public boolean createTetrimino(Tetriminos tetrimino)
-	{
-		// TODO A virer
-		
-		List<Box> list = new ArrayList<Box>();
-		
-		Location[] tab = new Location[4];
-		Location location = tetrimino.getInitLocation();
-		
-		switch (tetrimino.getType()){
-		case I:
-			tab[1]= location;
-			tab[0]= new Location(location.getRow()+1,location.getColumn());
-			tab[2]= new Location(location.getRow()+2,location.getColumn());
-			tab[3]= new Location(location.getRow()+3,location.getColumn());
-			break;
-		case O:
-			tab[0]= location;
-			tab[1]= new Location(location.getRow()+1,location.getColumn());
-			tab[2]= new Location(location.getRow()+1,location.getColumn()-1);
-			tab[3]= new Location(location.getRow(),location.getColumn()-1);
-			break;
-		case L:
-			tab[2]= location;
-			tab[0]= new Location(location.getRow()+1,location.getColumn());
-			tab[1]= new Location(location.getRow()+2,location.getColumn());
-			tab[3]= new Location(location.getRow()+2,location.getColumn()+1);
-			break;
-		case Z:
-			tab[0]= location;
-			tab[3]= new Location(location.getRow(),location.getColumn()-1);
-			tab[1]= new Location(location.getRow()+1,location.getColumn());
-			tab[2]= new Location(location.getRow()+1,location.getColumn()+1);
-			break;
-		case S:
-			tab[0]= location;
-			tab[3]= new Location(location.getRow(),location.getColumn()+1);
-			tab[1]= new Location(location.getRow()+1,location.getColumn());
-			tab[2]= new Location(location.getRow()+1,location.getColumn()-1);
-			break;
-		case T:
-			tab[0]= location;
-			tab[1]= new Location(location.getRow()+1,location.getColumn());
-			tab[2]= new Location(location.getRow(),location.getColumn()-1);
-			tab[3]= new Location(location.getRow(),location.getColumn()+1);
-			break;
-		case J:
-			tab[2]= location;
-			tab[3]= new Location(location.getRow()+2,location.getColumn()-1);
-			tab[0]= new Location(location.getRow()+1,location.getColumn());
-			tab[1]= new Location(location.getRow()+2,location.getColumn());
-			break;
-		default :	break;
-		}
-		
-		for(int i=0;i<4;i++){
-			list.add(box[tab[i].getRow()][tab[i].getColumn()]);
-		}
-		
-		for(Box b : list){
-			if(b.getState() != States.EMPTY)
-				return false;
-		}
-		
-		for(Box b : list){
-			b.setTetrimino(tetrimino);
-		}
-		
-		currentLocationPlayed = tab;
-		
-		return true;
-	}
+
 	
-	public void setTetrimino(Tetriminos tetrimino, Location location){
+	public void setTetrimino(Tetrimino tetrimino, Location location){
 		box[location.getRow()][location.getColumn()].setTetrimino(tetrimino);
 	}
 	
@@ -224,6 +149,14 @@ public class Board {
 	public Box getBox(int row, int column)
 	{
 		return this.box[row][column];
+	}
+	
+	public Location[] getCurrentLocationPlayed() {
+		return currentLocationPlayed;
+	}
+	
+	public void setCurrentLocationPlayed(Location[] currentLocationPlayed) {
+		this.currentLocationPlayed = currentLocationPlayed;
 	}
 	
 	public String toString()

@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-import tetris.model.Types;
+import tetris.model.Tetrimino;
 import tetris.view.BoxesColors;
 
 /**
@@ -32,7 +32,7 @@ public class Box extends JLabel{
 	 * Class tat links the types enumeration (the tetriminos) to the color they will have during a game.
 	 * @param type
 	 */
-	public void setColor(Types type){
+	public void setColor(Tetrimino type){
 		
 		BoxesColors color;
 		

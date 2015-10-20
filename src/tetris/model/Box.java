@@ -11,7 +11,7 @@ public class Box {
 
 	private States state;
 
-	private Tetriminos tetrimino;
+	private Tetrimino tetrimino;
 
 	/**
 	 * Constructor parameterized for Box class.
@@ -37,7 +37,7 @@ public class Box {
 	 * Method allowing to get the tetrimino assigned to a box.
 	 * @return
 	 */
-	public Tetriminos getTetrimino()
+	public Tetrimino getTetrimino()
 	{
 		return tetrimino;
 	}
@@ -46,13 +46,13 @@ public class Box {
 	 * Method allowing to modify the tetrimino assigned to a box.
 	 * @param tetrimino
 	 */
-	public void setTetrimino(Tetriminos tetrimino) 
+	public void setTetrimino(Tetrimino tetrimino) 
 	{
 		this.tetrimino = tetrimino;
 		this.state = States.PLAYED;  //TODO : Remettre PLACED � la place de PLAYED
 	}
 	
-	public void setTetrimino(Tetriminos tetrimino, States state) 
+	public void setTetrimino(Tetrimino tetrimino, States state) 
 	{
 		this.tetrimino = tetrimino;
 		this.state = state;  //TODO : Remettre PLACED � la place de PLAYED
