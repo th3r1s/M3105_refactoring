@@ -71,6 +71,8 @@ public class Board {
 	 */
 	public boolean createTetrimino(Tetriminos tetrimino)
 	{
+		// TODO A virer
+		
 		List<Box> list = new ArrayList<Box>();
 		
 		Location[] tab = new Location[4];

@@ -7,6 +7,8 @@ package tetris.model;
  */
 public class Tetriminos {
 	
+	// TODO Enum
+	
 	private final Location initLocation;
 	
 	private final Types type;

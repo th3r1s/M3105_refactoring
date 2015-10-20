@@ -203,6 +203,8 @@ public class SwingController implements Controller{
 			this.game.stopTimer();
 	}
 
+	// TODO Remonte trop haut
+	
 	public ConfigManager getConfig(){
 		return config;
 	}
