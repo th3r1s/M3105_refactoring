@@ -263,13 +263,13 @@ public class Game {
 	 * Method allowing to set a tetrimino on the board by making the relatives Box around the first box having a tetrimino on it, depending on the tetrimino wanted.
 	 * @param tetrimino
 	 */
-	private boolean createTetrimino(Tetrimino tetrimmino, Location location){
+	private boolean createTetrimino(Tetrimino tetrimino, Location location){
 			
 			List<Box> list = new ArrayList<Box>();
 			
 			Location[] tab = new Location[4];
 			
-			switch (tetrimmino){
+			switch (tetrimino){
 			case I:
 				tab[1]= location;
 				tab[0]= new Location(location.getRow()+1,location.getColumn());
@@ -325,7 +325,7 @@ public class Game {
 			}
 			
 			for(Box b : list){
-				b.setTetrimino(tetrimmino);
+				b.setTetrimino(tetrimino);
 			}
 			
 			board.setCurrentLocationPlayed(tab);
