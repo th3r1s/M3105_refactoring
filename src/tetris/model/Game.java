@@ -27,7 +27,7 @@ public class Game {
 	
 	private int tetris;
 
-	private Tetrimino nextType;
+	private Tetrimino nextTetrimmino;
 	
 	private boolean listenerAllowed;
 	
@@ -61,21 +61,21 @@ public class Game {
 		tetris = 0;
 		listenerAllowed = true;
 		random = new Random();
-		nextType = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
+		nextTetrimmino = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
 		initLocation = new Location(0,5);
 		
 	}
 
 	public void play(){
 		controller.refreshDisplay();
-		if(!createTetrimino(nextType, initLocation)){
+		if(!createTetrimino(nextTetrimmino, initLocation)){
 			listenerAllowed = false;
 			stopTimer();
 			controller.notifyWin();
 			return;
 		}
-		currentTetrimino = nextType;
-		nextType = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
+		currentTetrimino = nextTetrimmino;
+		nextTetrimmino = Tetrimino.values()[random.nextInt(Tetrimino.values().length)];
 		startTimer();
 		listenerAllowed = true;
 	}
@@ -342,7 +342,7 @@ public class Game {
 	}
 	
 	public Tetrimino getNextType() {
-		return nextType;
+		return nextTetrimmino;
 	}
 	
 	public boolean isListenerAllowed(){
